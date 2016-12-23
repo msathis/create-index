@@ -66,7 +66,7 @@ export default (directoryPath, options = {}) => {
       return false;
     }
 
-    if (!isDirectory && !_.endsWith(fileName, '.js')) {
+    if (!isDirectory && (!_.endsWith(fileName, '.js') || !_.endsWith(fileName, '.jsx'))) {
       return false;
     }
 
