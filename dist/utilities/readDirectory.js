@@ -88,7 +88,7 @@ exports.default = function (directoryPath) {
       return false;
     }
 
-    if (!isDirectory && (!_lodash2.default.endsWith(fileName, '.js') || !_lodash2.default.endsWith(fileName, '.jsx'))) {
+    if (!isDirectory && !_lodash2.default.endsWith(fileName, '.js') && !_lodash2.default.endsWith(fileName, '.jsx')) {
       return false;
     }
 

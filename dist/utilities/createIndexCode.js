@@ -27,9 +27,15 @@ const buildExportBlock = files => {
     return 'export ' + safeVariableName(fileName) + ' from \'./' + fileName + '\';';
   });
 
-  importBlock = importBlock.join('\n');
+  importBlock = '//es6-imports\n\n' + importBlock.join('\n');
 
-  return importBlock;
+  let es5Imports = _lodash2.default.map(files, fileName => {
+    return 'exports[\'' + safeVariableName(fileName) + '\'] =  require(\'./' + fileName + '\');';
+  });
+
+  es5Imports = '//es5-imports\n\n' + es5Imports.join('\n');
+
+  return importBlock + '\n\n' + es5Imports;
 };
 
 exports.default = function (filePaths) {
