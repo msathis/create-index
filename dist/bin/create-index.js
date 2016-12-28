@@ -5,6 +5,10 @@ var _yargs = require('yargs');
 
 var _yargs2 = _interopRequireDefault(_yargs);
 
+var _path = require('path');
+
+var _path2 = _interopRequireDefault(_path);
+
 var _utilities = require('../utilities');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -37,7 +41,9 @@ const argv = _yargs2.default.demand(1).options({
   }
 }).example('create-index ./src ./src/utilities', 'Creates or updates an existing create-index index file in the target (./src, ./src/utilities) directories.').example('create-index --update ./src ./tests', 'Finds all create-index index files in the target directories and descending directories. Updates found index files.').argv;
 
-(0, _utilities.writeIndexCli)(argv._, {
+const directory = _path2.default.resolve(argv._[0]);
+
+(0, _utilities.writeIndexCli)([directory], {
   banner: argv.banner,
   ignoreUnsafe: argv.ignoreUnsafe,
   recursive: argv.recursive,

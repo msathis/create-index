@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import yargs from 'yargs';
+import path from 'path';
 import {
     writeIndexCli
 } from '../utilities';
@@ -41,7 +42,9 @@ const argv = yargs
   .example('create-index --update ./src ./tests', 'Finds all create-index index files in the target directories and descending directories. Updates found index files.')
   .argv;
 
-writeIndexCli(argv._, {
+const directory = path.resolve(argv._[0]); 
+
+writeIndexCli([directory], {
   banner: argv.banner,
   ignoreUnsafe: argv.ignoreUnsafe,
   recursive: argv.recursive,
